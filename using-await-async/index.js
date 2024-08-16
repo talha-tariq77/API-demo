@@ -36,12 +36,11 @@ async function generateAPIImage(query) {
                 
             console.log('2nd then', response2.meta.status);
 
+            removePastErrorMessages();
+            removeImage();
+
             if (response2.meta.status != 200 || response2.data.length == 0) {
                 throw new Error('Error: ' + response2.meta.status);
-            }
-            else {
-                removePastErrorMessages();
-                removeImage();
             }
 
             let gif = document.createElement('img');
@@ -59,9 +58,6 @@ function search(e) {
 
     generateAPIImage(searchVal)
     .catch((msg) => {
-
-        removePastErrorMessages();
-        removeImage();
 
         // console.log(msg);
         // console.log('at catch');
